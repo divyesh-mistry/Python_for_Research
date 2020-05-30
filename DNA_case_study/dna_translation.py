@@ -74,11 +74,11 @@ def translate(seq):
 print(translate("CTA"))
 help(translate)
 dna = read_seq("dna.txt")
-prt_f = translate(dna[20:938])
+prt_f = translate(dna[20:938])[:-1]
 prt = read_seq("protine.txt")
 print(prt_f)
 print(prt)
 print(prt_f == prt)
 # to avoid stop codon for comparision
-print((prt_f[:-1]) == prt)
+#print((prt_f[:-1]) == prt)
 # or we can d the same by using[20:935] for print_f
