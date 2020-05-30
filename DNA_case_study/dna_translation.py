@@ -7,7 +7,10 @@ seq = f.read()
 inputfile = "dna.tx"
 with open("dna.txt", 'r') as f:
     seq = f.read()
+seq = seq.replace("\n", "")
+seq = seq.replace("\r", "")
 
+# print(seq).txt
 # make function to read data
 
 
@@ -16,20 +19,14 @@ def read_seq(inputfile):
 
     with open(inputfile, 'r') as f:
         seq = f.read()
+        # to remove extra line beaks given by \n
         seq = seq.replace("\n", "")
+        # sometime we have unother character hiding in the string and than can be replced by "\r "
+# This is extra step just to be on safer side
         seq = seq.replace("\r", "")
     return seq
 
 
-# to remove extra line beaks given by \n
-seq = seq.replace("\n", "")
-prt = read_seq("protine.txt")
-seq2 = read_seq("dna_2.txt")
-# print(seq).txt
-
-# sometime we have unother character hiding in the string and than can be replced by "\r "
-# This is extra step just to be on safer side
-seq = seq.replace("\r", "")
 # print(seq)
 
 
@@ -59,20 +56,29 @@ def translate(seq):
     }
 
     # check that sequence length is divisible by 3
-    # n=len(seq)%3 # '%' is called as modulur
-    # print(n)
+    n = len(seq) % 3  # '%' is called as modulur
+    print(n)
 
     protine = ""
     # loop over the sequence
-    # if n == 0:
-    for i in range(0, len(seq), 3):
-        # extract the single codon
-        codon = seq[i:i+3]
-        # look up the codon and store the results
-        protine += table[codon]  # concatinate the string
-    return(protine)
+    if n == 0:
+        for i in range(0, len(seq), 3):
+            # extract the single codon
+            codon = seq[i:i+3]
+            # look up the codon and store the results
+            protine += table[codon]  # concatinate the string
+        return(protine)
 
 
 # to check the function to extraxt protine
 print(translate("CTA"))
 help(translate)
+dna = read_seq("dna.txt")
+prt_f = translate(dna[20:938])
+prt = read_seq("protine.txt")
+print(prt_f)
+print(prt)
+print(prt_f == prt)
+# to avoid stop codon for comparision
+print((prt_f[:-1]) == prt)
+# or we can d the same by using[20:935] for print_f
