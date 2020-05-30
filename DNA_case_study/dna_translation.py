@@ -2,11 +2,30 @@
 inputfile = "dna.txt"
 f = open(inputfile, 'r')
 seq = f.read()
-# print(seq)
+
+# read file using with statement
+inputfile = "dna.tx"
+with open("dna.txt", 'r') as f:
+    seq = f.read()
+
+# make function to read data
+
+
+def read_seq(inputfile):
+    """Function read and save sequence with special character removed"""
+
+    with open(inputfile, 'r') as f:
+        seq = f.read()
+        seq = seq.replace("\n", "")
+        seq = seq.replace("\r", "")
+    return seq
+
 
 # to remove extra line beaks given by \n
 seq = seq.replace("\n", "")
-# print(seq)
+prt = read_seq("protine.txt")
+seq2 = read_seq("dna_2.txt")
+# print(seq).txt
 
 # sometime we have unother character hiding in the string and than can be replced by "\r "
 # This is extra step just to be on safer side
@@ -15,7 +34,7 @@ seq = seq.replace("\r", "")
 
 
 def translate(seq):
-    #Write Doc string so user understande te class or function
+    # Write Doc string so user understande te class or function
     """Translate a string containg nucleotide sequnce into a string
     containg the corresponding sequence of amino acids. Nucleotides are 
     translated in to triplets and the table dictionary; each amino acid
@@ -52,6 +71,7 @@ def translate(seq):
         # look up the codon and store the results
         protine += table[codon]  # concatinate the string
     return(protine)
+
 
 # to check the function to extraxt protine
 print(translate("CTA"))
