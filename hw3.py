@@ -131,3 +131,6 @@ plt.legend(numpoints=1, loc="upper left")
 plt.xlabel("Mean Word Length")
 plt.ylabel("Number of Words")
 plt.show()
+# Looking at the plot, unique words have the largest difference in statistics by
+# translation - unique English are shorter than either unique Portuguese or unique German words,
+# and there are also fewer unique English words than either unique German or unique Portuguese words.
